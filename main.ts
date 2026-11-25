@@ -1,16 +1,17 @@
 // Fortune Cookie for the Liquidated Trader
 // make.fun bounty: u-clever-harbor-75-fortune-cookie-for-the-liquidated-38fd239c
 //
-// The program writes exactly one fortune-cookie line to /output/entry.txt.
-// The line is fixed: it was chosen for the judge's brief (a freshly
-// liquidated crypto trader, reading at 3am, keeps the fortune that makes
-// them laugh instead of cry) and must reach the judge byte-for-byte.
+// Writes exactly one fortune-cookie line to /output/entry.txt.
+// The line is fixed: it is the TOP 1 pick for this bounty, chosen for
+// the brief (a freshly liquidated crypto trader, reading at 3am, keeps
+// the fortune that makes them laugh instead of cry) and must reach the
+// judge byte-for-byte.
 
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const FORTUNE =
-  "Your next trade will be your best one. The cookie has no opinion on your leverage, only your timing.";
+  "You will be reborn as a stablecoin. At last, one thing in your portfolio that stays put.";
 
 // The harness mounts the output directory at /output; honour an override
 // when one is supplied so the program also runs locally for testing.
@@ -33,5 +34,13 @@ if (FORTUNE.includes("\n") || FORTUNE.trim() !== FORTUNE) {
 
 mkdirSync(dirname(target), { recursive: true });
 writeFileSync(target, FORTUNE, "utf8");
+
+// Read back what landed on disk and refuse to report success unless it
+// is byte-identical to the chosen fortune — the judge reads this file,
+// so a silent write error or encoding surprise must fail loudly here.
+const written = readFileSync(target, "utf8");
+if (written !== FORTUNE) {
+  throw new Error("entry.txt on disk does not match the chosen fortune byte-for-byte");
+}
 
 console.log(`wrote ${FORTUNE.length} characters (${words.length} words) to ${target}`);

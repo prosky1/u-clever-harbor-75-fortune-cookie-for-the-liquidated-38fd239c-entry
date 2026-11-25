@@ -8,11 +8,11 @@ Entry for the [Fortune Cookie for the Liquidated Trader](https://make.fun/bounty
 
 ## The fortune
 
-> Your next trade will be your best one. The cookie has no opinion on your leverage, only your timing.
+> You will be reborn as a stablecoin. At last, one thing in your portfolio that stays put.
 
-One line, 100 characters, 19 words — a real fortune-cookie voice with the
-punchline landing on the loss: the cookie blesses the timing, not the
-leverage that just got the trader liquidated.
+One line, 88 characters, 17 words — a real fortune-cookie voice with the
+punchline landing on the loss: the reborn trader comes back as the one
+thing in the portfolio that never moves.
 
 ## How it works
 
